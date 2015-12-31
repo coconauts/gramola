@@ -12,6 +12,7 @@ Gramola is a lightweight web music player, written in pure Javascript.
 - Prepared to deal with huge collections of music.
 - Minimal overhead. Runs neatly on a Raspberry Pi!
 - "Files and folders over MD5 tags" philosophy.
+- Responsive interface that looks pretty even on phones.
 - Easily find folders, or set them to play in infinite random mode.
 - Favorite or blacklist songs, and make your own buckets.
 - Multiuser.
