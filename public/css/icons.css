@@ -1,0 +1,49 @@
+
+.small-icon{
+  width:16px;
+  height:16px;
+}
+/*
+ http://nicolasgallagher.com/css-background-image-hacks/
+ http://www.spritecow.com/
+ */
+[class*="icon-"] {
+  width:48px !important;
+  height:50px !important;
+  background-repeat: no-repeat;
+  background-image:url('images/icons.png');
+  /*Resize the whole component
+  zoom:0.60;
+  -moz-transform:scale(0.60);
+  -moz-transform-origin: 0 0;*/ 
+}
+/* 1 ,2, 3  ,4  ,5  ,6  ,7
+ * 48,96,144,192,240,288,336 */
+
+/*Top buttons*/
+.icon-eject {	background-position:-96px 0px}
+.icon-shuffle {	background-position:-48px -96px}
+.icon-shuffle-disabled {background-position:-96px -96px}
+/*Reload*/
+.icon-reload-disabled {	background-position:-96px -144px}
+.icon-reload-error {	background-position:0px -144px}
+.icon-reload-success {	background-position:-48px -144px}
+.icon-reload-loading {	background-image:url('images/loading.gif');}
+/*File types*/
+.icon-parent { background-position:-48px -192px}
+.icon-folder {	background-position:0px -192px}
+.icon-file {	background-position:-144px -192px}
+.icon-collection { background-position:0px 0px}
+.icon-song {	background-position:-96px -192px}
+.icon-noimage{background-position:-192px -192px }
+/*Actions*/
+.icon-share {	background-position:0px -96px}
+.icon-play {	background-position:-336px 0px}
+.icon-download {	background-position:-48px 0px}
+/*Others*/
+.icon-search {	background-position:-288px 0px}
+.icon-favorite {	background-position:-192px 0px}
+.icon-woal {	background-position:-144px 0px}
+.icon-menu {     background-position:-192px -96px}
+.icon-covers { background-position:-240px 0px}
+.icon-list { background-position:-144px -96px}

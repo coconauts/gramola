@@ -1,0 +1,96 @@
+{
+    "offset": 0,
+    "count": 10,
+    "total": 36,
+    "folder": {
+        "path": "/Juegos/Fan"
+    },
+    "files": [
+        {
+            "folder": "/Juegos/Fan",
+            "name": "8 Bit Instrumental",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+          "folder": "/Juegos/Fan/8 Bit Instrumental",
+          "name": "Top_Gear_Rockabilly_Dark_Gears_Surfing_Gear_OC_ReMix",
+          "ext": "mp3",
+          "type": "song"
+        },
+        {
+
+            "folder": "/Juegos/Fan/8 Bit Instrumental/8 Bit Instrumental - Altered Bit",
+            "name": "8 Bit Instrumental - 07 - Maximum Carnage",
+            "ext": "mp3",
+            "type": "song"
+
+        },
+        {
+          "folder": "/Juegos/OST/Bayonetta",
+          "name": "cover",
+          "ext": "jpg",
+          "type": "image"
+        },
+        {
+          "folder": "/Juegos/OST/Bayonetta/artbook",
+          "name": "file",
+          "ext": "directory",
+          "type": "file"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "A Legend of Zelda Indie Game Composer Tribute",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "BadAss - Boss Themes",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "BadAss - Boss Themes - Volume II",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "Bladiator",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "Blak omen",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "Dj_virt",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "Doom II Delta - Q-Delta",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "Eric barker",
+            "ext": "",
+            "type": "folder"
+        },
+        {
+            "folder": "/Juegos/Fan",
+            "name": "Final Fantasy II - Rebellion",
+            "ext": "",
+            "type": "folder"
+        }
+    ]
+}

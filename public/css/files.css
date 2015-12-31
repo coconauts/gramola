@@ -1,0 +1,113 @@
+#files-div {
+}
+
+/* USed when screen is large , set via javascript (views.js) ,
+ Use small-12 columns when small*/
+.files-large {
+   width:calc(100% - 500px);
+  left:500px;
+  position:absolute;
+  height: calc(100vh - 50px);
+}
+
+/* FILE DIVS*/
+/*
+.tab {
+  max-height: calc(100% - 50px);
+  overflow:auto;
+}*/
+#file-browser .icon {
+  font-size: 32px;
+}
+#search-text{
+  margin:5px;
+  width:calc(100% - 50px);
+  /*padding-left:20px;
+  padding-right:15px;*/
+}
+
+
+/* LIST */
+.list-files{
+  width: 100%;
+  font-size:small;
+}
+.list-files tr {width:20px ;}
+
+.list-files tr:hover {background-color:#eee;}
+
+/*Dynamic image in view.js*/
+.list-files .file-image {
+  background-size: 100% 100%;
+  width:20px;
+  /*background-image : defined in view.js*/
+}
+.list-files .icon {
+  width: 20px;
+  font-size: 16px !important;
+}
+.list-files .name {}
+.list-files .actions {
+  width:20px;
+  font-size: 16px;
+}
+
+
+.files{
+  vertical-align:top;
+  width:100%;
+}
+
+.filename{
+  width:250px;
+  position:absolute;
+  top:2px;
+  left:55px;
+  height:20px;
+  overflow:hidden;
+  font-size:small;
+  font-weight:normal;
+}
+
+.menuLabel {
+  position:absolute;
+  top:25px;
+  text-align:center;
+  width:52px;
+  margin-left:-10px;
+  overflow:show;
+}
+
+.background {
+  height:20px;
+  margin-top: 3px;
+}
+
+li a img {
+  height:48px !important;
+}
+
+.image {
+  width:48px;
+  height:50px;
+}
+
+
+#load-more {
+  width:100%;
+}
+
+#stats table {
+  width:48%;
+}
+
+#popular {
+  float:left;
+}
+#never-played {
+  float:right;
+}
+
+.ui-tabs-anchor{
+  font-size:medium;
+}

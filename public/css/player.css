@@ -1,0 +1,66 @@
+/*#player-div{
+  height:100%;
+   width:485px;
+   position:absolute;
+}*/
+#player-div{
+  padding: 0px !important;
+}
+
+#jp_container_1 {
+  width:100%;
+}
+
+/*INFO PANEL*/
+#player-info {
+  width:100%;
+  padding:10px;
+  display:none;
+  font-size:small;
+  overflow:auto;
+}
+
+
+#player-info .cover {
+  width:30%;
+  text-align:center;
+  float:left;
+}
+#player-info .info {
+  width:70%;
+  float:right;
+  
+  padding-left:10px;
+}
+
+
+#player-info .info table {
+  width:100%;
+}
+
+/*COVER*/
+
+
+.cover-fixed-height{
+    width:auto;
+    height:100%;
+    overflow:visible;
+}
+.cover-fixed-width{
+    width:100%;
+    height:auto;
+    overflow:visible;
+}
+
+.cover-controls { 
+  text-align:center;
+  width:100%;
+  background-color: lightgray;
+  padding: 2%;
+  border-radius: 0px 0px 10px 10px;
+  border: 1px solid;
+}
+.cover-controls .left{ float:left !important}
+.cover-controls .counter{ }
+.cover-controls .right{ float:right !important}
+

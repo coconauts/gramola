@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8></meta>
+        <title>Gramola 2.0</title>
+        <link rel=icon type=image/x-icon href=favicon.ico />
+        <link type=text/css href=css/jquery-ui-1.10.3.custom.min.css rel=stylesheet />
+        <script languaje='javascript' src=js/jquery/jquery-1.9.1.min.js></script>
+        <script languaje='javascript' src=js/jquery/jqueryui-1.10.3.js></script>
+        <script languaje='javascript' src=js/mustache.min.js></script>
+        <script languaje='javascript' src="js/foundation/foundation.min.js"></script>
+
+        <link rel=stylesheet href=css/style.css />
+        <link rel=stylesheet href=css/files.css />
+        <link rel=stylesheet href=css/ionicons/ionicons.min.css />
+        <link rel='stylesheet' href='css/foundation/normalize.css'/>
+        <!--http://sudheerdev.github.io/Foundation5CheatSheet/-->
+        <link rel='stylesheet' href='css/foundation/foundation.min.css'/>
+        <!--
+        <script languaje='javascript' src='js/jplayer/jquery.jplayer.min.js'></script>
+        <script languaje='javascript' src='js/jplayer/add-on/jplayer.playlist.min.js'></script>
+
+                <script type='text/javascript' src='js/gramola.min.js'></script>
+        -->
+        <script type='text/javascript' src='js/gramola/view.js'></script>
+        <script type='text/javascript' src='js/gramola/utils.js'></script>
+
+        <script type='text/javascript'>
+          $(document).ready(function(){
+            console.log("Mustache test start");
+
+            var loadJsonFile = function (path, callback)
+            {
+                var oReq = new XMLHttpRequest();
+                oReq.onload = function reqListener () {
+                  jsonData = JSON.parse(this.responseText);
+                  //console.log(Loading JSON data, jsonData);
+                  callback(jsonData);
+                };;
+                oReq.open("get", path, true);
+                oReq.send();
+            }
+
+            loadJsonFile("test-ls.json", function(json){
+              console.log("Loading view from json ", json);
+              view.ls(json, "#list-files");
+            });
+          });
+        </script>
+    </head>
+    <body>
+            <script id='file-template' type=x-tmpl-mustache>
+              <tr title='{{title}}'>
+                  <#image>
+                    <td class='file-image' style='background-image:url({{ image }})'></td>
+                  </image>
+                  <^image>
+                    <td class='default-action icon {{ icon }}'></td>
+                  </image>
+                  <td class='default-action name'>{{title}}</td>
+
+                    <td class='actions ion-more' data-dropdown='submenu-{{id}}'>
+
+                    <ul id='submenu-{{id}}' class='f-dropdown f-dropdown-random' >
+                        {{#type.folder}}
+                          <li class='play' >Play all</li>
+                          <li class='random-folder'>Random songs</li>
+                          <li class='infinite'>Infinite mode (random)</li>
+                          <li class='share'>Share folder</li>
+                        {{/type.folder}}
+                        {{#type.song}}
+                          <li class='download' >Download</li>
+                          <li class='open-folder' >Open folder</li>
+                          <li class='share'>Share song</li>
+                        {{/type.song}}
+                    </ul>
+                 </td>
+              </tr>
+
+            </script>
+
+            <table id='list-files' class='list-files'></table>
+
+            <script type="text/javascript">
+            $(document).foundation();
+          </script>
+    </body>
+</html>

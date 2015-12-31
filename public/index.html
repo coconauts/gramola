@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>Gramola</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link type="text/css" href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+
+        <!--<link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/player.css" />
+        <link rel="stylesheet" href="css/files.css" />-->
+        <link rel="stylesheet" href="css/ionicons/ionicons.min.css" />
+        <link rel='stylesheet' href='css/ux/materialize.min.css'/>
+
+        <!--<link rel='stylesheet' href='css/jplayer/morning.light/jplayer.morning.light.css' />-->
+        <link rel='stylesheet' href='css/jplayer/blue.monday/css/jplayer.blue.monday.min.css' />
+
+          <link rel="stylesheet" href="css/jplayer-custom.css" />
+          <link rel="stylesheet" href="css/gramola.css" />
+
+        <script languaje='javascript' src="js/ux/jquery.min.js"></script>
+        <!--<script languaje='javascript' src='js/jplayer/jquery.jplayer.min.js'></script>
+        <script languaje='javascript' src='js/jplayer/add-on/jplayer.playlist.min.js'></script>-->
+        <script languaje='javascript' src='js/jplayer2.9.2/jquery.jplayer.min.js'></script>
+        <script languaje='javascript' src='js/jplayer2.9.2/add-on/jplayer.playlist.min.js'></script>
+
+        <script languaje='javascript' src="js/ux/mustache.min.js"></script>
+        <script languaje='javascript' src="js/ux/materialize.min.js"></script>
+
+        <script type='text/javascript' src='js/gramola.min.js'></script>
+
+    </head>
+    <body>
+
+      <nav class='light-blue'>
+        <div class="nav-wrapper">
+          <a href='#' class='right logged'  onclick='user.logout()'>Logout</a>
+          <div class="row right notLogged">
+              <div class="input-field col s4">
+                <input type='text' id='userLogin' placeholder='User'/>
+              </div>
+              <div class="input-field col s4">
+                <input type='password' id='passLogin' placeholder='Password'/>
+
+              </div>
+              <div class="input-field col s4">
+                <a href='#' onclick='user.login()'>Login</a>
+              </div>
+          </div>
+
+          <ul id="nav-mobile" class="left hide-on-small-only">
+            <li><a href="/" class='hide-on-med-only'>GRAMOLA</a></li>
+            <li>
+              <a class="dropdown-button ion-shuffle" href="#!" data-activates="shuffle-dropdown" > <span id='infinite_label'></span></a>
+              <ul class="dropdown-content" id="shuffle-dropdown">
+                  <li id="infinite_disabled">   <a href="#disabled">Disabled</a> </li>
+                  <li id="infinite_all"> <a href="#all">All</a> </li>
+                  <li id="infinite_current"> <a href="#current">Current</a> </li>
+              </ul>
+            </li>
+            <li><a href="#" class='nav-icon ion-eject eject'> Eject</a></li>
+          </ul>
+        </div>
+      </nav>
+
+        <div class='row logged'>
+            <div class="col s12 l6" id="_player-div_" >
+                <div class="row card" id="player-info">
+                    <div class='col s12 m6 center image-holder '>
+                        <img class='song-cover responsive-img' src='css/images/no-img.png' />
+                        <a href='#' id='download-image' class='ion-android-download'></a>
+                    </div>
+                    <div class='col s12 m6'>
+                        <ul class='collection'>
+                          <li class='collection-item'>
+                            <b> Album</b>
+                            <span id="song_folder">album name</span>
+                            <a href="#" id="share_folder" class='secondary-content'><i class='ion-android-share-alt'></i></a>
+                          </li>
+                          <li class='collection-item'>
+                            <b class='title'> Song</b>
+                            <span id="song-name">song name</span>
+                            <a href="#" id="share_song" class='secondary-content'><i class='ion-android-share-alt'></i></a>
+                          </li>
+                        </ul>
+                        <div id='song_info_actions' class='center'>
+
+                          <div class='row'>
+                            <div class='col s4'>
+                              <a href='#' class='bucket-toggle ion-heart' category='favorite'></a>
+                            </div>
+                            <div class='col s4'>
+                              <a href='#' class='bucket-toggle ion-ios-close' category='blacklist'> </a>
+                            </div>
+                            <div class='col s4'>
+                              <a class="dropdown-button ion-android-bookmark" href="#!" data-activates="custom-buckets" ></a>
+                              <ul class="dropdown-content" id="custom-buckets"> </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <script id='custom-buckets-template' type=x-tmpl-mustache>
+                          {{#.}}
+                              <li > <a href="#" class='bucket-toggle' category='{{.}}'>{{.}}</a> </li>
+                          {{/.}}
+                        </script>
+                    </div>
+                </div>
+                <!-- end player-info-->
+
+                <div id="jp_container_1" class="card jp-video jp-video-270p" role="application" aria-label="media player">
+               	<div class="jp-type-playlist">
+               		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+               		<div class="jp-gui">
+               		<!--	<div class="jp-video-play">
+               				<button class="jp-video-play-icon" role="button" tabindex="0">play</button>
+               			</div>-->
+               			<div class="jp-interface">
+               				<div class="jp-progress">
+               					<div class="jp-seek-bar">
+               						<div class="jp-play-bar"></div>
+               					</div>
+               				</div>
+               				<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+               				<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+               				<div class="jp-controls-holder">
+               					<div class="jp-controls">
+               						<button class="jp-previous" role="button" tabindex="0">previous</button>
+               						<button class="jp-play" role="button" tabindex="0">play</button>
+               						<button class="jp-next" role="button" tabindex="0">next</button>
+               						<button class="jp-stop" role="button" tabindex="0">stop</button>
+               					</div>
+               					<div class="jp-volume-controls">
+               						<button class="jp-mute" role="button" tabindex="0">mute</button>
+               						<button class="jp-volume-max" role="button" tabindex="0">max volume</button>
+               						<div class="jp-volume-bar">
+               							<div class="jp-volume-bar-value"></div>
+               						</div>
+               					</div>
+               					<div class="jp-toggles">
+               						<button class="jp-shuffle" role="button" tabindex="0">shuffle</button>
+               					</div>
+               				</div>
+               				<div class="jp-details">
+               					<div class="jp-title" aria-label="title">&nbsp;</div>
+               				</div>
+               			</div>
+               		</div>
+               		<div class="jp-playlist">
+               			<ul>
+               				<!-- The method Playlist.displayPlaylist() uses this unordered list -->
+               				<li>&nbsp;</li>
+               			</ul>
+               		</div>
+               		<div class="jp-no-solution">
+               			<span>Update Required</span>
+               			To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+               		</div>
+               	</div>
+               </div>
+                <!-- end jquery_jplayer_1-->
+            </div>
+            <!-- end player-div-->
+            <script id='playall-template' type=x-tmpl-mustache>
+              <li title='Play all' class='collection-item avatar'>
+                   <i class='circle default-action icon ion-music-note'></i>
+                   <p class='default-action'>Play all {{name}}</p>
+              </li>
+            </script>
+            <script id='file-template' type=x-tmpl-mustache>
+              <li title='{{title}}' class='collection-item avatar'>
+                    {{#image}}
+                      <img src='{{ image }}' class="circle" ></img>
+                    {{/image}}
+                    {{^image}}
+                      <i class='circle light-blue default-action icon {{ icon }}'></i>
+                    {{/image}}
+                    <p class='default-action play-song'> {{title}} </p>
+                    <a class='dropdown-button secondary-content' href='#' data-activates='submenu-{{id}}'>...</a>
+
+                    <ul id='submenu-{{id}}' class='dropdown-content' >
+                        {{#type.folder}}
+                          <li class='play' ><a href='#play-all'>Play all</a></li>
+                          <li class='random'><a href='#random-songs'>Random songs</a></li>
+                          <li class='infinite'><a href='#infinite-mode'> Infinite mode</a></li>
+                          <li class='share'><a href='#share-folder'>Share folder</a></li>
+                        {{/type.folder}}
+                        {{#type.song}}
+                          <li class='download' ><a href='#download'>Download</a></li>
+                          <li class='open-folder' ><a href='#open-folder'>Open folder</a></li>
+                          <li class='share'><a href='#share-song'>Share song</a></li>
+                        {{/type.song}}
+                    </ul>
+              </li>
+
+            </script>
+
+            <div id='_files-div_' class='col s12 l6 card'>
+                <ul class='tabs '>
+                    <li class=' tab col s2'> <a href="#file-browser">Files</a> </li>
+                    <li class='tab col s2'> <a id='woal-tab' href="#woal">woal</a> </li>
+                    <li class='tab col s2'> <a id='buckets-tab' href="#buckets">Buckets</a> </li>
+                    <li class='tab col s2'>   <a href="#cover">Cover</a> </li>
+                    <li class='tab col s2'> <a id='stats-tab' href="#stats">Stats</a> </li>
+                    <li class='tab col s2'> <a href="#settings">Settings</a> </li>
+                </ul>
+                <div id='file-browser' class='tab'>
+                    <input placeholder="Folder or song name" type='text' id='search-text'/>
+
+                    <ul id='list-files' class='collection'></ul>
+                    <button class='btn blue' id='load-more'>Load more</button>
+                </div>
+                <!--end file-browser-->
+                <div id='cover'  class='tab'>
+                    <img class='song-cover cover-fixed-width'/>
+                    <div class='cover-controls center' >
+                      <a href="#" class='ion-arrow-left-a left-control left-align z-depth-4'></a>
+                      <a href="#" class='ion-arrow-right-a right-control right-align z-depth-4'></a>
+                      <span class='count'></span> of <span class='total'> </span>
+                    </div>
+                </div>
+                <!--end cover-->
+                <div  id="settings"  class='tab'>
+                    <button id="addUserButton">Add new user</button>
+                    <label>% of favorite songs in random</label>
+                    <input id="random_favorite" type="number" step="1" value="0" max="100" min="0"/>
+                    <button id="random_save">Save</button>
+                    <label>Notification timeout (in miliseconds)</label>
+                    <input id="timeout-setting" type="number" step="100" value="0" max="10000" min="0"/>
+                    <button id="timeout-save">Save</button>
+                    <label>Show images
+                        <input type='checkbox' id='settings-image'/>
+                    </label>
+                    <label>Custom lists (comma separated)</label>
+                    <input id="customlist-setting" type="text" />
+                    <button id="customlist-save">Save</button>
+                </div>
+                <!--end settings-->
+                <div id="buckets"  class='tab'>
+                    <select id='buckets-select'></select>
+                    <ul id='list-bucket' class='collection'></ul>
+                </div>
+                <!--end buckets-->
+                <div id="woal"  class='tab'>
+                    <ul id='list-woal' class='collection'></ul>
+                </div>
+                <!--end woal-->
+                <div id="stats"  class='tab'>
+                    <p id='total-songs' ></p>
+                    <table id='popular'></table>
+                    <table id='never-played'></table>
+                    <table id='new'></table>
+                </div>
+                <!--end stats-->
+            </div>
+        </div>
+        <script type="text/javascript">
+              $('ul.tabs').tabs();
+                $(".dropdown-button").dropdown();
+
+     </script>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>Gramola setup</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link type="text/css" href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="css/ionicons/ionicons.min.css" />
+        <link rel='stylesheet' href='css/ux/materialize.min.css'/>
+
+          <link rel="stylesheet" href="css/jplayer-custom.css" />
+          <link rel="stylesheet" href="css/setup.css" />
+
+        <script languaje='javascript' src="js/ux/jquery.min.js"></script>
+        <script languaje='javascript' src="js/ux/materialize.min.js"></script>
+
+        <script languaje='javascript' src="js/setup.js"></script>
+        <script languaje='javascript' src="js/gramola/utils.js"></script>
+
+    </head>
+    <body>
+      <nav class="top-nav light-blue">
+              <div class="container">
+                <div class="nav-wrapper"><a class="page-title">Gramola setup</a></div>
+              </div>
+            </nav>
+      <div class="container">
+
+
+        <h2 class='light-blue-text'> Welcome to Gramola</h2>
+        <p>It seems you are running gramola for the first time.</p>
+        <p> We will help you setting up your enviroment so you can start using
+          gramola right away, please fill the form below.</p>
+
+            <h3 class='light-blue-text'> Admin user</h3>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input id='admin-name' placeholder="Your user name" type="text" class="validate" >
+                <label for="first_name">User name</label>
+              </div>
+              <div class="input-field col s6">
+                <input id='admin-pass' placeholder="Your password" id="last_name" type="password" class="validate" >
+                <label for="last_name">Password</label>
+              </div>
+            </div>
+
+            <h3 class='light-blue-text'> Your music folder</h3>
+
+            <input id='music-path' placeholder="/home/user/music" id="first_name" type="text" class="validate" >
+
+            <div class='card white-text card-content red' id='error'>
+              <p id='error-message' class='center'>Error message</p>
+            </div>
+
+            <button class='btn red' id='submit'>Setup</button>
+      </div>
+
+    <script type="text/javascript">
+      $(".dropdown-button").dropdown();
+
+     </script>
+    </body>
+</html>

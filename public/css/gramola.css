@@ -1,0 +1,88 @@
+
+.bucket-on {
+  color:red !important;
+}
+.bucket-off {
+  color:gray !important;
+}
+
+#load-more{
+  width:100%;
+}
+
+#player-info{
+  padding:10px;
+}
+.image-holder {
+  overflow:hidden;
+}
+
+/*COVER*/
+
+.cover-controls {
+  display:none;
+}
+.cover-fixed-height{
+    width:auto;
+    height:100%;
+    overflow:visible;
+}
+.cover-fixed-width{
+    width:100%;
+    height:auto;
+    overflow:visible;
+}
+
+.cover-controls a {
+  border: 1px solid gray;
+  border-radius: 500px;
+  margin: 10px;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: xx-large;
+  color: gray;
+  background-color: white;
+  opacity: 0.5;
+}
+
+.left-control {
+  position: absolute;
+  left: 20px;
+  top: 100px;
+}
+.right-control {
+  position: absolute;
+  right: 20px;
+  top: 100px;
+}
+/*
+.cover-controls {
+  text-align:center;
+  width:100%;
+  background-color: lightgray;
+  padding: 2%;
+  border-radius: 0px 0px 10px 10px;
+  border: 1px solid;
+}*/
+
+#download-image {
+  display:none;
+}
+
+/** Materialize changes **/
+
+.card{
+  overflow:visible;
+}
+
+.indicator { background-color: #2196f3 !important}
+.tab a { color: #2196f3 !important;}
+
+/** JPLAYER changes **/
+.jp-playlist{
+  background-color:white;
+}
+
+#jp_container_1 {
+  border: 0px;
+}
