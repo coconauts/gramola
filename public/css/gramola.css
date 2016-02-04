@@ -86,3 +86,7 @@
 #jp_container_1 {
   border: 0px;
 }
+
+.collection {
+  overflow:visible;
+}
