@@ -2,6 +2,9 @@ var utils = require('../helpers/utils.js');
 var googleImages = require('../services/google-images.js');
 var images = require('../models/images.js');
 
+var logFactory = require('../helpers/log.js');
+var log = logFactory.create("controllers/images");
+
 module.exports = {
   routes:  function(app){
 

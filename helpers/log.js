@@ -17,13 +17,13 @@ var format = function(level, message) {
     return "["+time+"] "+ level + ": "+ message;
 }
 
-var loadPapertrail = function(host, port){
-  if (!host || !port) {
+var loadPapertrail = function(){
+  if (!config || !config.LOG_HOST || !config.LOG_PORT) {
     console.error("You must provide a host and port for papertrail loging");
     return;
   }
 
-  console.log("Loading papertrail host ", host, " port ", port);
+  //console.log("Loading papertrail host ", host, " port ", port);
   return new winston.transports.Papertrail({
       host: config.LOG_HOST,
       port: config.LOG_PORT,
@@ -41,7 +41,7 @@ module.exports = {
 
         var logger = new winston.Logger({
           transports: [
-             loadPapertrail(config.LOG_HOST, config.LOG_PORT)
+             loadPapertrail()
           ]
         });
         return logger;

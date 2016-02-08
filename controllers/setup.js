@@ -19,7 +19,7 @@ module.exports = {
             user.count(function(c) {
                 if (c > 0) {
                     res.status(403);
-                    console.log("Trying to run setup again");
+                    log.info("Trying to run setup again");
                     res.writeHead(302, {  'Location': "/" });
                     res.end();
                 } else {

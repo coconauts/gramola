@@ -7,7 +7,7 @@ http.globalAgent.maxSockets = 100;
 String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
 
 module.exports = {
-  
+
   sortFiles: function (a, b) {
       if (a.type == b.type) return a.name.localeCompare(b.name);
       var order = ["folder", "song", "image", "file"];
@@ -18,10 +18,10 @@ module.exports = {
    Return unified structure for files , (Requires full path to check directory)*/
     parseFile: function(root, path, file){
       var isDirectory = fs.lstatSync(root + path +"/"+ file).isDirectory(),
-          type = "", 
+          type = "",
           name = "",
           ext = "";
-      
+
       if (isDirectory) {
         name = file;
         type = "folder";
@@ -36,7 +36,7 @@ module.exports = {
         ext:  ext,
         type: type,
         desc: undefined
-      }; 
+      };
     },
     /*@tested
       Return folder of a full path (NO contains trailing /)*/
@@ -60,26 +60,26 @@ module.exports = {
     },
     sanitize: function (str)
     {
-        str = str.replace(/\(.*\)/g,""); 
-        str = str.replace(/ - /g,": "); 
+        str = str.replace(/\(.*\)/g,"");
+        str = str.replace(/ - /g,": ");
         str = str.trim();
         return str;
     },
-    
+
     getOrElse: function(value, valueDefault){
       if (value) return value;
       else return valueDefault;
     },
     getType: function(file){
       if (this.isSong(file)) return "song";
-      else if (this.isImage(file)) return "image";      
+      else if (this.isImage(file)) return "image";
       else return "file";
     },
     isImage: function(file){
       var ext = this.getExtension(file).toUpperCase();
       return (ext === "JPG") ||
              (ext === "PNG") ||
-             (ext === "GIF") || 
+             (ext === "GIF") ||
              (ext === "JPEG");
     },
     isSong: function(file){
@@ -88,15 +88,6 @@ module.exports = {
     },
     isLoggedIn: function (req){
       return req.session.username != null;
-    },
-    //@deprecated: Use log.js instead
-    log: function (text){
-      var now = new Date();
-      var day = now.getDate();
-      var month = now.getMonth();
-      var year = now.getFullYear();
-      var time = now.toLocaleTimeString();
-      console.log("["+year+"-"+month+"-"+day+"T"+time+"Z] "+text);
     },
     readDirRecursive: function(root, dir,done){
       walk(root, dir,done);
@@ -107,7 +98,7 @@ module.exports = {
     probability: function(chances){
       return this.random(0,100) <= chances;
     },
-    
+
     loginRequired: function(req,res){
       if ( req.session.id) return true;
       else {
@@ -117,7 +108,7 @@ module.exports = {
       }
     },
     adminRequired: function(req,res){
-      
+
       if (req.session.admin)  return true;
       else {
         res.status(401);
@@ -128,7 +119,7 @@ module.exports = {
     /*@tested
       Remove parent folder of discs (remove trailing /)*/
     removeDiscs: function(folder){
-      
+
       var discs = ["cd", "disc", "disk"]; //lowercase
       for (var i=0; i < discs.length; i++){
 	var disc = discs[i];
@@ -137,8 +128,9 @@ module.exports = {
       }
       return folder;
     },
+    //@deprectaed 
     getRequest : function(host, path, callback, format){
-      
+
         var startTime = Date.now(),
             uri = host+ '/'+path, //only needed for logs
             data = "",
@@ -148,13 +140,13 @@ module.exports = {
                 path: path,
                 agent : false
             };
-        
+
         http.get(options, function(resp){
             resp.on('data', function(chunk){
                 data += chunk;
             });
             resp.on('end', function(){
-                
+
                 if (format == "json") {
                   try{
                       json =  JSON.parse(data);
@@ -163,13 +155,13 @@ module.exports = {
                     var msg = "Unable to parse json response " + data +" " + e;
                     callback(msg);
                   }
-                  
+
                 } else callback(false, data);
             });
         }).on("error", function(e){
-          var msg = "Request "+uri+" returned an error: "+e;  
+          var msg = "Request "+uri+" returned an error: "+e;
           callback(msg);
-        });   
+        });
    }
 };
 
@@ -205,4 +197,3 @@ var walk = function(root, dir ,done){
     });
   });
 }
-

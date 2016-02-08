@@ -17,8 +17,8 @@ var fs = require('fs'),
 try {
   var env = require('node-env-file');
   env(process.cwd() + '/.env');
-  global.config = process.env;
 } catch(err){}
+global.config = process.env;
 
 var dbSettings = require('./models/settings.js');
 
