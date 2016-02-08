@@ -1,46 +1,49 @@
-var bunyan = require('bunyan');
-var Stream = require('stream');
-
-var parseLevel = function(level) {
-    
-    switch(level) {
-        case 10: return "TRACE"; 
-        case 20: return "DEBUG";
-        case 30: return "INFO";
-        case 40: return "WARN";
-        case 50: return "ERROR";
-        case 60: return "FATAL";
-        default: return "UNDEFINED";
-    }
-}
-
-var stream = new Stream();
-stream.writable = true
+var winston = require('winston');
+require('winston-papertrail').Papertrail;
 
 var formatTime = function(date) {
-    
+
     var day = date.getDate();
     var month = date.getMonth();
     var year = date.getFullYear();
     var time = date.toLocaleTimeString();
     return year+"-"+month+"-"+day+" "+time;
 }
-stream.write = function(obj) {
+var format = function(level, message) {
 
-    var time = formatTime(obj.time);
-    var level = parseLevel(obj.level);
-    
-    var l = "["+time+"] "+ level + ": "+ obj.name +": " + obj.msg;
-    console.log(l)
+    var time = formatTime(new Date());
+    var level = level.toUpperCase();
+
+    return "["+time+"] "+ level + ": "+ message;
 }
 
+var loadPapertrail = function(host, port){
+  if (!host || !port) {
+    console.error("You must provide a host and port for papertrail loging");
+    return;
+  }
+
+  console.log("Loading papertrail host ", host, " port ", port);
+  return new winston.transports.Papertrail({
+      host: config.LOG_HOST,
+      port: config.LOG_PORT,
+      program: "gramola",
+      logFormat: function(level, message) {
+          var formatted = format(level,message);
+          console.log(formatted);
+          return formatted;
+      }
+  });
+}
 module.exports = {
-    
+
     create: function(name) {
-        return bunyan.createLogger({name: name, 
-            streams: [{  type: "raw", stream: stream, }],
-            formatter: "pretty", 
-            level: "debug"
-        }); 
+
+        var logger = new winston.Logger({
+          transports: [
+             loadPapertrail(config.LOG_HOST, config.LOG_PORT)
+          ]
+        });
+        return logger;
     }
 }

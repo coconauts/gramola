@@ -10,11 +10,6 @@ var express = require("express"),
 var fs = require('fs'),
     path = require('path');
 
-var logFactory = require('./helpers/log.js');
-var log = logFactory.create("app");
-
-var dbSettings = require('./models/settings.js');
-
 /**
  *  == Load DEFAULT CONFIG ==
  */
@@ -22,7 +17,13 @@ var dbSettings = require('./models/settings.js');
 try {
   var env = require('node-env-file');
   env(process.cwd() + '/.env');
+  global.config = process.env;
 } catch(err){}
+
+var dbSettings = require('./models/settings.js');
+
+var logFactory = require('./helpers/log.js');
+var log = logFactory.create("app");
 
 var loadIfMissing = function(config, value){
   if (!process.env[config]) {

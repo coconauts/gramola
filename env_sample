@@ -3,3 +3,5 @@ ROOT='/path/to/my/music'
 MAX_FILES=50
 DB='./gramola.db'
 REFRESH_FREQ=36000000
+LOG_HOST=localhost
+LOG_PORT=1234
