@@ -42,7 +42,12 @@ function Settings(){
   //images (stringify boolean)
   //random_favorite (% chances to get favorite in random) //Server variable, you should not to use it
   //timeout (for notifications)
-  var settings = {};
+  var settings = {
+    images: "true",
+    timeout: 10,
+    random_favorite: 0  ,
+    customlist: ""
+  };
 
   this.load = function(){
     $.ajax({
@@ -58,20 +63,20 @@ function Settings(){
           images.init(settings.images == "true");
           notification.init(settings.timeout);
 
-          $("#customlist-setting").val(settings["customlist"]);
-          //customList.init(settings["customlist"]);
-
-          var customBuckets = settings["customlist"].split(",");
-          bucketNames = bucketNames.concat(customBuckets);
-          console.log("Loaded bucketnames " + bucketNames);
-          loadCustomBuckets(customBuckets);
+          if (settings.customlist) {
+            $("#customlist-setting").val(settings.customlist);
+            var customBuckets = settings.customlist.split(",");
+            bucketNames = bucketNames.concat(customBuckets);
+            console.log("Loaded bucketnames " + bucketNames);
+            loadCustomBuckets(customBuckets);
+          }
         }
     });
-  }
+  };
 
   this.set = function(key, value){
     $.ajax("settings/set?k="+key+"&v="+value);
-  }
+  };
 
   //@not-used Not used by now, remove this deprecation if it is requiered by any method
   this.getNoCache = function(setting, callback){
@@ -81,15 +86,15 @@ function Settings(){
             callback(json.value);
         }
     });
-  }
+  };
 
   this.get = function(key){
     var value = settings[key];
     if (typeof value == 'undefined') console.error("Setting key "+ key + " is undefined");
     return value ;
-  }
+  };
   this.getBoolean = function(key){
     return this.get(key) == "true";
-  }
+  };
 
 }

@@ -9,7 +9,11 @@
     "node-env-file": "^0.1.4",
     "serve-favicon":"2.2.1",
     "winston": "^2.1.1",
-    "winston-papertrail": "^1.0.2"
+    "node-bing-api": "^2.3.0"
+
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "engine": {
     "node": ">=0.10.25"

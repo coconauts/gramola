@@ -1,9 +1,13 @@
 var utils = require('../helpers/utils.js');
-var googleImages = require('../services/google-images.js');
-var images = require('../models/images.js');
 
 var logFactory = require('../helpers/log.js');
 var log = logFactory.create("controllers/images");
+
+var bing;
+if (config.BING_API_KEY)  bing = require('node-bing-api')({ accKey: config.BING_API_KEY });
+else log.error("Couldn't find config.BING_API_KEY, image service not available");
+
+var images = require('../models/images.js');
 
 module.exports = {
   routes:  function(app){
@@ -11,11 +15,27 @@ module.exports = {
       app.get('/images/search',  function(req,res){
           if (!utils.loginRequired(req,res)) return;
 
-          googleImages.search(req.query.n, function(error, url){
+          if (!bing) {
+            var msg =  "Bing service is not available, did you setup config.BING_API_KEY ?";
+            log.error(msg)
+            res.json({error: msg});
+            return;
+          }
+
+          log.info("Requesting image in bing: "+req.query.n);
+          bing.images(req.query.n, {
+            top: 1,  // Number of results (max 50)
+          //  skip: 3,   // Skip first 3 results
+          }, function(error, result, body){
+            var thumbnail = "";
             if (error) log.error(error);
-            res.json({error: error, url: url, source: "google"});
+            else thumbnail = body.d.results[0].Thumbnail.MediaUrl;
+
+            res.json({error: error, url: thumbnail, source: "bing"});
           });
       });
+
+
 
       app.get('/images/download',  function(req,res){
           if (!utils.loginRequired(req,res)) return;

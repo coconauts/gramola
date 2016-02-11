@@ -31,7 +31,7 @@ function Jplayer(){
         //check if the playlist is stuck because a song is broken
         if (isBroken()){
             console.log("The song "+newSong+" is broken!!");
-            user.request(); //check if it's broken because session ended
+          //  user.request(); //check if it's broken because session ended
             playlist.next();
         }
     } else {
