@@ -17,7 +17,7 @@ module.exports = {
 
           if (!bing) {
             var msg =  "Bing service is not available, did you setup config.BING_API_KEY ?";
-            log.error(msg);
+            log.warn(msg);
             res.json({error: msg});
             return;
           }
