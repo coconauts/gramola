@@ -17,7 +17,7 @@ module.exports = {
 
           if (!bing) {
             var msg =  "Bing service is not available, did you setup config.BING_API_KEY ?";
-            log.error(msg)
+            log.error(msg);
             res.json({error: msg});
             return;
           }
@@ -29,9 +29,16 @@ module.exports = {
           }, function(error, result, body){
             var thumbnail = "";
             if (error) log.error(error);
-            else thumbnail = body.d.results[0].Thumbnail.MediaUrl;
-
-            res.json({error: error, url: thumbnail, source: "bing"});
+            else {
+              try {
+                thumbnail = body.d.results[0].Thumbnail.MediaUrl;
+                res.json({error: error, url: thumbnail, source: "bing"});
+              } catch (e) {
+                var msg = "Unable to get image from Bing: "  + e;
+                log.error(msg, body);
+                res.json({error: msg });
+              }
+            }
           });
       });
 
