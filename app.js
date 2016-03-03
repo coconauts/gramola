@@ -25,10 +25,10 @@ var dbSettings = require('./models/settings.js');
 var logFactory = require('./helpers/log.js');
 var log = logFactory.create("app");
 
-var loadIfMissing = function(config, value){
-  if (!process.env[config]) {
-    log.info(config+ " not defined on config, using default "+value);
-    process.env[config] = value;
+var loadIfMissing = function(c, value){
+  if (!config[c]) {
+    log.info(c+ " not defined on config, using default "+value);
+    config[c] = value;
   }
 };
 
@@ -37,34 +37,34 @@ loadIfMissing("PORT", 8890);
 loadIfMissing("REFRESH_FREQ", 36000000);
 loadIfMissing("MAX_FILES", 50);
 
-var dbDirectory = path.dirname(process.env.DB);
+var dbDirectory = path.dirname(config.DB);
 fs.exists(dbDirectory, function(exists){
   if(!exists){
     log.error("Can't access DB directory: "+dbDirectory);
     process.exit(1);
   } else {
-    log.info("Using DB path: "+process.env.DB);
+    log.info("Using DB path: "+config.DB);
   }
 });
 
-global.db = new sqlite3.Database(process.env.DB);
+global.db = new sqlite3.Database(config.DB);
 
-if (!process.env.ROOT) {
+if (!config.ROOT) {
  log.info("ROOT variable not set in config");
   dbSettings.get(0,"music-folder", function(folder){
     if (!folder) {
       log.info("ROOT variable not set in DB, using /tmp");
-      process.env.ROOT = "/tmp";
+      config.ROOT = "/tmp";
     } else {
       log.info("Loading ROOT from DB: "+folder.value);
-      process.env.ROOT = folder.value;
+      config.ROOT = folder.value;
     }
   });
 } else {
- log.info("ROOT variable set in config: "+process.env.ROOT);
+ log.info("ROOT variable set in config: "+config.ROOT);
 }
 
-if (process.env.DEBUG) log.debug("Running node.js server in DEBUG mode");
+if (config.DEBUG) log.debug("Running node.js server in DEBUG mode");
 
 /**
  *  == Load models ==
@@ -84,7 +84,7 @@ var utils = require('./helpers/utils.js');
 //supervisor -i public/js/gramola.min.js app.js
 var gramolaJs = 'public/js/gramola/';
 var list = fs.readdirSync(gramolaJs);
-var compressType = (process.env.DEBUG)?'no-compress':'gcc';
+var compressType = (config.DEBUG)?'no-compress':'gcc';
 
 log.debug("Minifying js with method "+compressType+" in "+ gramolaJs+ ": " + list);
 var files = [];
@@ -126,5 +126,5 @@ require('./controllers/player.js').routes(app);
 require('./controllers/images.js').routes(app);
 require('./controllers/setup.js').routes(app);
 
-app.listen(process.env.PORT);
-log.info("Server started in http://localhost:"+process.env.PORT);
+app.listen(config.PORT);
+log.info("Server started in http://localhost:"+config.PORT);
