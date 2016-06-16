@@ -99,24 +99,12 @@ var insertMultiple = function(files, callback) {
      });
 }
 var random = function(n, type, folder, sort, callback) {
-
-    if (sort == "frequency-desc") {
-        stats.popular(n, folder, "ASC", function(songs) {
-            callback(undefined, songs);
-        });
-    } else if (sort == "never-played") {
-        stats.neverPlayed(n, folder, function(songs) {
-
-            //If no more "never-played" songs, repeat method sorting by frequency
-            if (songs == []) random(n, type, folder, "frequency-desc", callback);
-            else callback(undefined, songs);
-        });
-    } else { // random
-        db.all("SELECT folder,name,ext,type FROM collection WHERE type = ? AND folder like '" + folder + "%' ORDER BY RANDOM()  LIMIT ? ", [type, n], function(err, ids) {
-            if (err) log.error("random",err);
-            callback(err, ids);
-        })
-    }
+      db.all(
+        "SELECT folder,name,ext,type FROM collection WHERE type = ? AND folder like '"
+        + folder + "%' ORDER BY RANDOM()  LIMIT ? ", [type, n], function(err, ids) {
+          if (err) log.error("random",err);
+          callback(err, ids);
+      })
 }
 
 module.exports = {
