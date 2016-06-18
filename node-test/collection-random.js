@@ -49,7 +49,6 @@ var randomTest = function(numQueries){
     counter ++;
     console.log(counter);
     if (counter > numQueries) {
-      debugger;
       return;
     }
     collection.random(1, "song", "", "random", function(err, songs){
