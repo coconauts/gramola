@@ -1,0 +1,7 @@
+gramola:
+    build: .
+    ports:
+      - "8890:8890"
+    volumes:
+      - .:/code
+      - ./music_test:/music

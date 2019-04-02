@@ -78,23 +78,11 @@ dbUtils.init(function(){});
  */
 var utils = require('./helpers/utils.js');
 
-
-//minify js files
-//Supervisor will restart in a loop, ignore the min.js file using:
-//supervisor -i public/js/gramola.min.js app.js
-var gramolaJs = 'public/js/gramola/';
-var list = fs.readdirSync(gramolaJs);
-var compressType = (config.DEBUG)?'no-compress':'gcc';
-
-log.debug("Minifying js with method "+compressType+" in "+ gramolaJs+ ": " + list);
-var files = [];
-list.forEach(function(file) {
-  files.push(gramolaJs+file);
-});
-new compressor.minify({
-  type: compressType,
-  fileIn: files,
-  fileOut: 'public/js/gramola.min.js',
+compressor.minify({
+  compressor: 'gcc',
+  input: 'public/js/gramola/*.js', 
+  //fileIn: files,
+  output: 'public/js/gramola.min.js',
   callback: function(err, min){
     if (err) log.error("Unable to minify JS", err);
   }

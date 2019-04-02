@@ -1,5 +1,5 @@
 PORT=8890
-ROOT='/path/to/my/music'
+ROOT='/music'
 MAX_FILES=50
 DB='./gramola.db'
 REFRESH_FREQ=36000000

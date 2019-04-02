@@ -1,19 +1,20 @@
 {
   "name": "gramola-nodejs",
   "dependencies": {
-    "express": "4.1.1",
-    "sqlite3": "3.0.5",
     "body-parser": "1.0.2",
     "cookie-session": "1.0.1",
-    "node-minify": "0.12.1",
+    "express": "4.1.1",
+    "negotiator": "^0.6.1",
+    "node-bing-api": "^2.3.0",
     "node-env-file": "^0.1.4",
-    "serve-favicon":"2.2.1",
-    "winston": "^2.1.1",
-    "node-bing-api": "^2.3.0"
-
+    "node-minify": "3.6.0",
+    "serve-favicon": "2.2.1",
+    "sqlite3": "^4.0.6",
+    "winston": "2.2.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "start": "node app.js"
   },
   "engine": {
     "node": ">=0.10.25"
